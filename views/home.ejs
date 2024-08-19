@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            padding: 14px 20px;
+            color: white;
+        }
+
+        .navbar .title {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .navbar button {
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .navbar button:hover {
+            background-color: #45a049;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+        button.edit {
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        button.edit:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="title">Techniche24 Vehicle Log</div>
+        <a href="/add"><button>Add</button></a>
+    </div>
+
+    <h2 style="text-align: center;">Vehicle Information</h2>
+
+    <!-- Horizontal Table -->
+    <% if (transports.length > 0) { %>
+        <table>
+            <thead>
+                <tr>
+                    <th>Vehicle Number</th>
+                    <th>Location</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% transports.forEach(transport => { %>
+                    <tr>
+                        <td><%= transport.registrationno %></td>
+                        <td><%= transport.location %></td>
+                        <td><%= transport.from %></td>
+                        <td><%= transport.to %></td>
+                        <td>
+                            <a href="/edit/<%= transport._id %>">
+                                <button class="edit">Edit</button>
+                            </a>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    <% } else { %>
+        <p style="text-align: center;">No vehicle information available.</p>
+    <% } %>
+
+</body>
+</html>
